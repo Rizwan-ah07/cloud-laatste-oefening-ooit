@@ -1,16 +1,24 @@
-name: Create diagram
+name: Generate Diagram
+
 on:
-  workflow_dispatch: {}
   push:
     branches:
       - main
+
 jobs:
-  get_data:
+  generate-diagram:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Update diagram
-        uses: githubocto/repo-visualizer@main
+
+      - name: Generate repository diagram
+        uses: githubocto/repo-visualizer@v1
         with:
-          excluded_paths: "ignore,.github"
+          output: diagram.svg
+
+      - name: Upload diagram artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: diagram
+          path: diagram.svg
