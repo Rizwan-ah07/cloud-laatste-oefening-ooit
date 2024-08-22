@@ -13,12 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate repository diagram
-        uses: githubocto/repo-visualizer@v1
+        uses: githubocto/repo-visualizer@0.9.1
         with:
           output: diagram.svg
 
-      - name: Upload diagram artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: diagram
-          path: diagram.svg
